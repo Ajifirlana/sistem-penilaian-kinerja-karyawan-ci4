@@ -1,0 +1,10 @@
+1. bagian edit sm detail nkp nkt di user at, kt, pt pilihan yg di masukin blm masuk karena blm ada database
+
+
+2. user at, kt, pt di bagian nkpp blm bisa
+
+
+3. bagian realisasi dan review nkp nkt kt pt pj ga muncul pilihan yg udh dimasukin oleh at kt pt
+
+
+4. bagian realisasi dan review nkp nkt kt pt pj bagian approve blm ke hitung otomatis
