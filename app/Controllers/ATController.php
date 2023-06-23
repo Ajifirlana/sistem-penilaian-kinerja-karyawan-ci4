@@ -50,11 +50,13 @@ class ATController extends BaseController
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'kendala1' => 'required',
-            'kendala2' => 'required',
+        if (
+            !$this->validate([
+                'kendala1' => 'required',
+                'kendala2' => 'required',
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/create_bimbingan');
         }
         $bimbinganModel = new Bimbingan();
@@ -110,11 +112,13 @@ class ATController extends BaseController
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'kendala1' => 'required',
-            'kendala2' => 'required',
+        if (
+            !$this->validate([
+                'kendala1' => 'required',
+                'kendala2' => 'required',
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/edit_bimbingan/' . $id);
         }
         $bimbinganModel = new Bimbingan();
@@ -180,11 +184,13 @@ class ATController extends BaseController
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'periode' => 'required',
+        if (
+            !$this->validate([
+                'periode' => 'required',
 
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/create_nkp');
         }
 
@@ -286,8 +292,6 @@ class ATController extends BaseController
         $nkp = $nkpATModel->find($id);
         $nkpModel = new NkpModel();
         $soal = $nkpModel->getAT();
-        // var_dump($nkp);
-        // exit;
         $data = [
             'nkp' => $nkp,
             'soal' => $soal
@@ -321,43 +325,35 @@ class ATController extends BaseController
         return view('at/edit_nkp', $data);
     }
 
-    public function form_updateNKP($id){
-echo $id;
+    public function form_updateNKP($id)
+    {
+        echo $id;
     }
     public function updateNKP($id)
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'periode' => 'required',
+        if (
+            !$this->validate([
+                'periode' => 'required',
 
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/create_nkp');
         }
 
-                $id_nkp = $this->request->getPost('id_nkp');
-                $urut = $this->request->getPost('urut');
         $no = 1;
-        $no1 = $this->request->getPost('nilai');
-        foreach ($no1 as $select)
-        {
-            echo "<pre>";
-        echo "You have selected :" .$select; 
-            echo "</pre>";
-        }
-            //print_r($id_nkp) ;
-      // $no1 = $this->request->getPost('nilai' . '' . $no) * 0.25;
-      
+        $no1 = $this->request->getPost('nilai' . '' . $no) * 0.25;
+
 
         $no1 = $this->request->getPost('nilai' . '' . $no++) * 0.25;
         $no2 = $this->request->getPost('nilai' . '' . $no + 1) * 0.25;
-        $no3 = $this->request->getPost('nilai' . '' . $no+2) * 0.2;
-        $no4 = $this->request->getPost('nilai' . '' . $no+3) * 0.3;
+        $no3 = $this->request->getPost('nilai' . '' . $no + 2) * 0.2;
+        $no4 = $this->request->getPost('nilai' . '' . $no + 3) * 0.3;
         $total1 = $no1 + $no2 + $no3 + $no4;
         $total1 = $total1 * 0.3;
-  var_dump($total1);
-  exit;  
+
         $no5 = $this->request->getPost('nilai' . '' . $no + 4) * 0.4;
         $no6 = $this->request->getPost('nilai' . '' . $no + 5) * 0.6;
         $total2 = $no5 + $no6;
@@ -431,11 +427,13 @@ echo $id;
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'periode' => 'required',
+        if (
+            !$this->validate([
+                'periode' => 'required',
 
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/create_nkt');
         }
 
@@ -548,11 +546,13 @@ echo $id;
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'periode' => 'required',
+        if (
+            !$this->validate([
+                'periode' => 'required',
 
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/create_nkt');
         }
 
@@ -637,17 +637,19 @@ echo $id;
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'kuant1' => 'required',
-            'kual1' => 'required',
-            'waktu1' => 'required',
-            'kuant2' => 'required',
-            'kual2' => 'required',
-            'waktu2' => 'required',
-            'periode' => 'required',
+        if (
+            !$this->validate([
+                'kuant1' => 'required',
+                'kual1' => 'required',
+                'waktu1' => 'required',
+                'kuant2' => 'required',
+                'kual2' => 'required',
+                'waktu2' => 'required',
+                'periode' => 'required',
 
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/create_sasaran');
         }
         $sasaranModel = new SasaranATModel();
@@ -705,17 +707,19 @@ echo $id;
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'kuant1' => 'required',
-            'kual1' => 'required',
-            'waktu1' => 'required',
-            'kuant2' => 'required',
-            'kual2' => 'required',
-            'waktu2' => 'required',
-            'periode' => 'required',
+        if (
+            !$this->validate([
+                'kuant1' => 'required',
+                'kual1' => 'required',
+                'waktu1' => 'required',
+                'kuant2' => 'required',
+                'kual2' => 'required',
+                'waktu2' => 'required',
+                'periode' => 'required',
 
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/edit_sasaran/' . $id);
         }
         $sasaranModel = new SasaranATModel();
@@ -773,16 +777,18 @@ echo $id;
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
-        if (!$this->validate([
-            'nama' => 'required',
-            'nip' => 'required',
-            'unit' => 'required',
-            'periode' => 'required',
-            'no_surat_dinas' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+        if (
+            !$this->validate([
+                'nama' => 'required',
+                'nip' => 'required',
+                'unit' => 'required',
+                'periode' => 'required',
+                'no_surat_dinas' => 'required',
+                'email' => 'required',
+                'password' => 'required',
 
-        ])) {
+            ])
+        ) {
             return redirect()->to('/at/profile' . $id);
         }
 
@@ -839,9 +845,9 @@ echo $id;
         $id_nkp = $this->request->getPost('id_nkp');
         $nkp = $nkpATModel->find($id_nkp);
 
-        $nilai_sasaran = (float)$this->request->getPost('sasaran');
-        $nilai_nkp = (float)$this->request->getPost('nkp');
-        $nilai_nkt = (float)$this->request->getPost('nkt');
+        $nilai_sasaran = (float) $this->request->getPost('sasaran');
+        $nilai_nkp = (float) $this->request->getPost('nkp');
+        $nilai_nkt = (float) $this->request->getPost('nkt');
 
         // var_dump($nilai_sasaran);
         // var_dump($nilai_nkp);
