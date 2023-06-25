@@ -92,6 +92,9 @@
                         <tr>
                             <th></th>
                             <th>Nilai Kinerja(NK-PP)</th>
+                            <th></th>
+                            <th></th>
+                            <th><?php echo $total = $nilai_kinerja_nkt+$nilai_kinerja_nkp+$nilai_kinerja_sasaran?></th>
                         </tr>
                     </table>
                 </div>
