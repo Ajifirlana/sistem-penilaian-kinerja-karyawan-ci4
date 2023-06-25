@@ -344,24 +344,19 @@ class ATController extends BaseController
         $id = $this->request->getPost('id');
         $nkpModel = new NkpModel();
 
-            $melebihi = '100';
-            $memenuhi = '85';
-            $perlu_perhatian='70'; 
-            $tidak_memenuhi = '55';
-             if ($this->request->getPost('melebihi') == NULL) {
-            $melebihi = 99;
-        }elseif ($this->request->getPost('memenuhi') == NULL) {
-            $memenuhi = 84;
-        }elseif($this->request->getPost('perlu_perhatian')==NULL){
-            $perlu_perhatian=69; 
-        }elseif($this->request->getPost('tidak_memenuhi')==NULL){
-            $tidak_memenuhi = 54;
-        }
-        else{
+         
             $melebihi = $this->request->getPost('melebihi');
             $memenuhi = $this->request->getPost('memenuhi');
             $perlu_perhatian=$this->request->getPost('perlu_perhatian'); 
             $tidak_memenuhi = $this->request->getPost('tidak_memenuhi');
+        if ($this->request->getPost('melebihi') == NULL) {
+            $melebihi = 99;
+        }if ($this->request->getPost('memenuhi') == NULL) {
+            $memenuhi = 84;
+        }if($this->request->getPost('perlu_perhatian')==NULL){
+            $perlu_perhatian=69; 
+        }if($this->request->getPost('tidak_memenuhi')==NULL){
+            $tidak_memenuhi = 54;
         }
         $data  = array(
             'melebihi' =>$melebihi ,
@@ -369,9 +364,10 @@ class ATController extends BaseController
         'perlu_perhatian' =>$perlu_perhatian,
         'tidak_memenuhi' => $tidak_memenuhi
                 );
+
        $nkpModel->protect(false)->update($id, $data);
         return redirect()->to('/at/nkp');
-                }
+               }
      public function updateNKP($id)
 
     {
