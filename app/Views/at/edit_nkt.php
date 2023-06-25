@@ -72,16 +72,49 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($soal as $no => $soal) : ?>
+                                <?php $no=1;
+                                $urut = 1;foreach ($soal as $soal) : ?>
                                     <tr>
-                                        <th><?php echo $no + 1 ?></th>
-                                        <th><?php echo $soal['soal']; ?></th>
+                                        <th><?php echo $no++ ?></th>
+                                        <th>
+                           <?php echo $soal['soal']; ?></th>
+                            <?php if($soal['melebihi'] >= 100){ ?>
+                                            <th>
+                                                <input type="radio" name="nilai[<?= $urut++?>]" id="nilai" value="<?php echo $soal['melebihi'] ?>" checked>
+                                            </th>
+                                        <?php }else{?>
+                                          <th>
+                                            <input type="radio" name="nilai[<?= $urut++?>]" id="nilai" value="100">
+                                          </th>
+                                      <?php }?>
 
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="100"></th>
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="85"></th>
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="70"></th>
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="55"></th>
-                                    </tr>
+                                      <?php if($soal['memenuhi'] >= 85){ ?>
+                                        <th>
+                                            <input type="radio" name="nilai[<?= $urut++?>]" id="nilai1" value="<?php echo $soal['memenuhi'] ?>" checked>
+                                        </th>
+                                    <?php }else{?>
+                                        <th><input type="radio" name="nilai[<?= $urut++?>]" value="85"id="nilai1"></th>
+                                    <?php }?>
+
+                                    <?php if($soal['perlu_perhatian'] >= 70){ ?>
+                                        <th>
+                                            <input type="radio" name="nilai[<?= $urut++?>]" id="nilai2" value="<?php echo $soal['perlu_perhatian'] ?>" checked>
+                                        </th>
+                                    <?php }else{?>
+                                        <th>
+                                            <input type="radio" name="nilai[<?= $urut++?>]" value="70"id="nilai2">
+                                        </th>
+                                    <?php }?>
+                                    <?php if($soal['tidak_memenuhi'] >= 55){ ?>
+                                        <th>
+                                            <input type="radio" name="nilai[<?= $urut++?>]" id="nilai3" value="<?php echo $soal['tidak_memenuhi'] ?>" checked>
+                                        </th>
+                                    <?php }else{?>
+                                        <th><input type="radio" name="nilai[<?= $urut++?>]" value="55" id="nilai3"></th>
+                                    <?php }?>
+ 
+                                    
+                                </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

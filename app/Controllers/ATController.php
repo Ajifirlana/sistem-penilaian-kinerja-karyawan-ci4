@@ -353,7 +353,6 @@ class ATController extends BaseController
         $total1 = $total1 * 0.3;
         
         $no5 = $this->request->getPost($nilai[5]) * 0.4;
-        
         $no6 = $this->request->getPost($nilai[6]) * 0.6;
         $total2 = $no5 + $no6;
         $total2 = $total2 * 0.2;
