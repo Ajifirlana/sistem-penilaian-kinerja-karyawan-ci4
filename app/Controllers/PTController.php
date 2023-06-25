@@ -746,11 +746,16 @@ class PTController extends BaseController
     {
 
         $NkppModel = new NkppModel();
-        $nkp = $NkppModel->data_proses();
-        $nilai_sasaran= $nkp[0]["nilai_sasaran"];
-        
+        $id= "35";
+        $nkp = $NkppModel->find($id);
+    
         $data = array(
-            'nilai_sasaran'=>$nilai_sasaran );
+            'nilai_sasaran'=>$nkp["nilai_sasaran"],
+            'nilai_nkp'=>$nkp["nilai_nkp"],
+            'nilai_nkt'=>$nkp["nilai_nkt"],
+            'nilai_kinerja_sasaran'=>$nkp["nilai_kinerja_sasaran"],
+            'nilai_kinerja_nkp'=>$nkp["nilai_kinerja_nkp"],
+            'nilai_kinerja_nkt'=>$nkp['nilai_kinerja_nkt'] );
        
         return view('pt/detail_nkpp',$data);
     }
