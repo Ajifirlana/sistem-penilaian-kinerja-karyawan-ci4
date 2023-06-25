@@ -86,7 +86,7 @@
                                         <?php if($soal['melebihi'] >= 100){ ?>
                                             <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai" value="<?php echo $soal['melebihi'] ?>" checked></th>
                                         <?php }else{?>
-                                          <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai" value="100">Y</th>
+                                          <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai" value="100"></th>
                                       <?php }?>
 
                                       <?php if($soal['memenuhi'] >= 85){ ?>
