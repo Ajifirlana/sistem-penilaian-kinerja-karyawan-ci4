@@ -95,7 +95,7 @@
                             <th>Nilai Kinerja(NK-PP)</th>
                             <th></th>
                             <th></th>
-                            <th><?php echo $nilai_nkpp; ?></th>
+                            <th><?php echo $total = $nkpp['nilai_kinerja_nkt']+$nkpp['nilai_kinerja_nkp']+$nkpp['nilai_kinerja_sasaran']; ?></th>
                         </tr>
                     </table>
                 </div>
