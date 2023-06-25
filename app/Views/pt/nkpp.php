@@ -71,10 +71,10 @@
                         </tr>
                         <tr>
                             <td>1.</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?php echo $tanggal?></td>
+                            <td><?php echo $periode?></td>
+                            <td><?php echo $status?></td>
+                            <td><?php echo $total?></td>
                             <td>
                                 <a href="/pt/detail_nkpp" class="btn btn-primary mb-3">Detail</a>
                                 <a href="#" class="btn btn-danger mb-3">Hapus</a>

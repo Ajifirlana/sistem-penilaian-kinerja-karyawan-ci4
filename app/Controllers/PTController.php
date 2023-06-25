@@ -739,7 +739,17 @@ class PTController extends BaseController
     //NKPP
     public function NKPPVIew()
     {
-        return view('pt/nkpp');
+
+        $NkppModel = new NkppModel();
+        $id= "35";
+        $nkp = $NkppModel->find($id);
+    $total = $nkp["nilai_kinerja_sasaran"]+$nkp["nilai_kinerja_nkp"]+$nkp['nilai_kinerja_nkt']; 
+        $data = array(
+            'tanggal'=>$nkp["tanggal"],
+            'periode'=>$nkp["periode"],
+            'status'=>$nkp["status"],
+            'total'=>$total);
+        return view('pt/nkpp',$data);
     }
 
     public function DetailNKPP()
