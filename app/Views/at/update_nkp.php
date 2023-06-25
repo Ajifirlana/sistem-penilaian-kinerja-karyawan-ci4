@@ -57,9 +57,10 @@
         <div class="container-fluid">
             <h3 class="px-2 mb-0 text-gray-800">Penilaian Kompetensi Perilaku</h3>
             <div class="row">
-                
-                <div class="card-body">
-                        <input type="text" class="form-control" id="kendala" aria-describedby="emailHelp" placeholder="Masukan Periode"  name="periode" maxlength="4">
+                <form action="/at/aksi_updatenkp" method="POST" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <input type="text" class="form-control" id="kendala" aria-describedby="emailHelp" placeholder="Masukan Periode" required name="periode" maxlength="4">
+
                         <table style="text-align: center;" id="example2" class="table table-bordered table-hover mt-3">
                             <thead>
                                 <tr>
@@ -69,64 +70,61 @@
                                     <th>Memenuhi Harapan</th>
                                     <th>Perlu Perbaikan</th>
                                     <th>Tidak Memenuhi Harapan</th>
-                                     <th>Aksi</th> 
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php  
-                                $urut = 1;
-                                $total_urut = 0;
-                                $no =1;
-                                foreach ($soal as  $soal) : ?>
-                
+                                <?php
+                                foreach ($nkp as $no => $nkp) : ?>
                                     <tr>
-                                        <th><?php echo $no++ ?></th>
+                                        <th><?php echo $no + 1 ?></th>
+                                        <th><?php echo $nkp['soal']; ?></th>
                                         <th>
-                            <input type="hidden" value="<?php echo $soal['id_nkp'];?>" name="id_nkp[<?= $soal['id_nkp']?>]" id="id_nkp"><?php echo $soal['soal']; ?></th>
-                                        <?php if($soal['melebihi'] >= 100){ ?>
-                                            <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai" value="<?php echo $soal['melebihi'] ?>" checked></th>
-                                        <?php }else{?>
-                                          <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai" value="100">Y</th>
-                                      <?php }?>
+                                            <input type="hidden"  name="id" value="<?php echo $nkp['id_nkp']; ?>" >
 
-                                      <?php if($soal['memenuhi'] >= 85){ ?>
-                                        <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai1" value="<?php echo $soal['memenuhi'] ?>" checked></th>
-                                    <?php }else{?>
-                                        <th><input type="radio" name="nilai[<?= $urut++?>]" value="85"id="nilai1"></th>
-                                    <?php }?>
+                                            <input type="radio" id="radio1" name="melebihi" value="100" ></th>
+                                        <th><input type="radio" id="radio2" name="memenuhi" value="85" ></th>
+                                        <th><input type="radio" id="radio3"  name="perlu_perhatian" value="70" ></th>
+                                        <th><input type="radio"  id="radio4" name="tidak_memenuhi" value="55"></th>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <input type="hidden" class="form-control" id="catatan" aria-describedby="emailHelp" placeholder="Masukan catatan jika perlu" name="nama" value="<?php echo $_SESSION['nama'] ?>">
 
-                                    <?php if($soal['perlu_perhatian'] >= 70){ ?>
-                                        <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai2" value="<?php echo $soal['perlu_perhatian'] ?>" checked></th>
-                                    <?php }else{?>
-                                        <th><input type="radio" name="nilai[<?= $urut++?>]" value="70"id="nilai2"></th>
-                                    <?php }?>
-                                    <?php if($soal['tidak_memenuhi'] >= 55){ ?>
-                                        <th><input type="radio" name="nilai[<?= $urut++?>]" id="nilai3" value="<?php echo $soal['tidak_memenuhi'] ?>" checked></th>
-                                    <?php }else{?>
-                                        <th><input type="radio" name="nilai[<?= $urut++?>]" value="55" id="nilai3"></th>
-                                    <?php }?>
+                        <input type="hidden" class="form-control" id="catatan" aria-describedby="emailHelp" placeholder="Masukan catatan jika perlu" name="nip" value="<?php echo $_SESSION['nip'] ?>">
+                        <div class="px-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
 
-<td>
-    <a href="/at/form_updateNKP/<?= $soal['id_nkp'] ?>"><button type="submit" class="btn btn-primary">Update</button></a>
-</td> 
-                                    
-                                </tr>
+                </form>
 
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-
-            
-                   <a href="/at/nkp" class="btn btn-danger">Batal</a>
-
-                </div>
-
+            </div>
         </div>
     </div>
-         
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
 
-<?= $this->endSection() ?>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+            $("#btnSubmit").on("click", function() {
+
+                var button = $(this);
+                var status = $(".nilai");
+
+                if(status.is(":checked")) {
+                    status.prop("checked", false);
+                    button.html("Activate");
+                } else {
+                    status.prop("checked", true);
+                    button.html("Deactivate");
+                }
+                
+            });
+        });
+</script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <?= $this->endSection() ?>

@@ -102,6 +102,8 @@ $routes->get('/at/edit_nkt/(:num)', 'ATController::EditNKT/$1');
 $routes->post('/at/updateNKT/(:num)', 'ATController::updateNKT/$1');
 $routes->get('/at/detail_nkt/(:num)', 'ATController::DetailNKT/$1');
 $routes->get('/at/nkt/delete/(:num)', 'ATController::deleteNKT/$1');
+$routes->post('/at/aksi_updatenkp', 'ATController::aksi_updatenkp');
+
 
 $routes->get('/at/sasarankinerja', 'ATController::SasaranKinerjaView');
 $routes->get('/at/create_sasaran', 'ATController::CreateSasaran');

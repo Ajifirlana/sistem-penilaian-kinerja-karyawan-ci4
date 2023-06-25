@@ -31,5 +31,11 @@ class NkpModel extends Model
         ->Get()
         ->getResultArray();
     }
+    function get_byid($id){
+         return $this->db->table('nkp')
+        ->where('id_nkp = ',$id)
+        ->Get()
+        ->getResultArray();
+    }
 
 }

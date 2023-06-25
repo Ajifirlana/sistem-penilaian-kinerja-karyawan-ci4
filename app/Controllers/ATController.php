@@ -327,9 +327,44 @@ class ATController extends BaseController
 
     public function form_updateNKP($id)
     {
-        echo $id;
+        //echo $id;
+        $nkpModel = new NkpModel();
+
+        $row = $nkpModel->get_byid($id);
+        $data = [
+            'nkp' => $row,
+
+        ];
+
+        return view('at/update_nkp', $data);
     }
-    public function updateNKP($id)
+    public function aksi_updatenkp()
+        {
+
+        $id = $this->request->getPost('id');
+        $nkpModel = new NkpModel();
+        if ($this->request->getPost('melebihi') == NULL || $this->request->getPost('memenuhi') == NULL ||  $this->request->getPost('perlu_perhatian')==NULL ||$this->request->getPost('tidak_memenuhi')==NULL) {
+            $melebihi = 99;
+            $memenuhi = 84;
+            $perlu_perhatian=69; 
+            $tidak_memenuhi = 54;
+        }else{
+            $melebihi = $this->request->getPost('melebihi');
+            $memenuhi = $this->request->getPost('memenuhi');
+            $perlu_perhatian=$this->request->getPost('perlu_perhatian'); 
+            $tidak_memenuhi = $this->request->getPost('tidak_memenuhi');
+        }
+        $data = [
+            $melebihi =>$melebihi ,
+        $memenuhi => $memenuhi,
+        $perlu_perhatian =>$perlu_perhatian,
+        $tidak_memenuhi => $tidak_memenuhi
+                ];
+       $nkpModel->protect(false)->update($id, $data);
+        return redirect()->to('/at/nkp');
+                }
+     public function updateNKP($id)
+
     {
         // $file = $this->request->getFile('foto');
         // $nama = $file ->getRandomName();
