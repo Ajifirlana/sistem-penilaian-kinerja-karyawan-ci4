@@ -354,12 +354,12 @@ class ATController extends BaseController
             $perlu_perhatian=$this->request->getPost('perlu_perhatian'); 
             $tidak_memenuhi = $this->request->getPost('tidak_memenuhi');
         }
-        $data = [
-            $melebihi =>$melebihi ,
-        $memenuhi => $memenuhi,
-        $perlu_perhatian =>$perlu_perhatian,
-        $tidak_memenuhi => $tidak_memenuhi
-                ];
+        $data  = array(
+            'melebihi' =>$melebihi ,
+        'memenuhi' => $memenuhi,
+        'perlu_perhatian' =>$perlu_perhatian,
+        'tidak_memenuhi' => $tidak_memenuhi
+                );
        $nkpModel->protect(false)->update($id, $data);
         return redirect()->to('/at/nkp');
                 }
