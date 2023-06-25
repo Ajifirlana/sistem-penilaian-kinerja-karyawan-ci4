@@ -343,12 +343,21 @@ class ATController extends BaseController
 
         $id = $this->request->getPost('id');
         $nkpModel = new NkpModel();
-        if ($this->request->getPost('melebihi') == NULL || $this->request->getPost('memenuhi') == NULL ||  $this->request->getPost('perlu_perhatian')==NULL ||$this->request->getPost('tidak_memenuhi')==NULL) {
+
+            $melebihi = '100';
+            $memenuhi = '85';
+            $perlu_perhatian='70'; 
+            $tidak_memenuhi = '55';
+             if ($this->request->getPost('melebihi') == NULL) {
             $melebihi = 99;
+        }elseif ($this->request->getPost('memenuhi') == NULL) {
             $memenuhi = 84;
+        }elseif($this->request->getPost('perlu_perhatian')==NULL){
             $perlu_perhatian=69; 
+        }elseif($this->request->getPost('tidak_memenuhi')==NULL){
             $tidak_memenuhi = 54;
-        }else{
+        }
+        else{
             $melebihi = $this->request->getPost('melebihi');
             $memenuhi = $this->request->getPost('memenuhi');
             $perlu_perhatian=$this->request->getPost('perlu_perhatian'); 
