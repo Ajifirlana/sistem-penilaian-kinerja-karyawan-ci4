@@ -318,6 +318,7 @@ class ATController extends BaseController
         $soal = $nkpModel->getAT();
 
         $data = [
+            'id_nkp'=>$soal,
             'nkp' => $nkp,
             'soal' => $soal
 
@@ -340,11 +341,51 @@ class ATController extends BaseController
     }
     public function aksi_updatenkp()
         {
+        $no = 1;
+        $id = $this->request->getPost('id_nkp[]');
+        $nilai = $this->request->getPost('nilai[]');
+        $no1 = $this->request->getPost($nilai[1]) * 0.25;
+        $no2 = $this->request->getPost($nilai[2]) * 0.25;
+        $no3 = $this->request->getPost($nilai[3]) * 0.2;
+        $no4 = $this->request->getPost($nilai[4]) * 0.3;
 
+        $total1 = $no1 + $no2 + $no3 + $no4;
+        $total1 = $total1 * 0.3;
+        
+        $no5 = $this->request->getPost($nilai[5]) * 0.4;
+        
+        $no6 = $this->request->getPost($nilai[6]) * 0.6;
+        $total2 = $no5 + $no6;
+        $total2 = $total2 * 0.2;
+        
+        $no7 = $this->request->getPost($nilai[7]) * 0.5;
+        $no8 = $this->request->getPost($nilai[8]) * 0.5;
+        $total3 = $no7 + $no8;
+        $total3 = $total3 * 0.3;
+        
+        $no9 = $this->request->getPost($nilai[9]) * 0.2;
+        $no10 = $this->request->getPost($nilai[10]) * 0.25;
+        $no11 = $this->request->getPost($nilai[11]) * 0.25;
+        $no12 = $this->request->getPost($nilai[12]) * 0.3;
+        $total4 = $no9 + $no10 + $no11 + $no12;
+        $total4 = $total4 * 0.2;
+        $nkp = $total1 + $total2 + $total3 + $total4;
+        $nkpATModel = new NKPATModel();
+        $nkpSoalModel = new SoalNKPModel();
+        $data = [
+            'nilai' => $nkp,
+            'periode' => $this->request->getPost('periode'),
+            'status' => "Pending",
+        ];
+
+
+
+        $nkpATModel->protect(false)->update($id, $data);
+        return redirect()->to('/at/nkp');
+                exit;
         $id = $this->request->getPost('id');
         $nkpModel = new NkpModel();
-
-         
+exit();         
             $melebihi = $this->request->getPost('melebihi');
             $memenuhi = $this->request->getPost('memenuhi');
             $perlu_perhatian=$this->request->getPost('perlu_perhatian'); 
