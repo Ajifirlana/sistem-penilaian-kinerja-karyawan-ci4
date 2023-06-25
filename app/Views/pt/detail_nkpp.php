@@ -71,7 +71,7 @@
                         <tr>
                             <th>1.</th>
                             <th>Sasaran Kinerja (N-SKn)</th>
-                            <th></th>
+                            <th><?php echo $nilai_sasaran;?></th>
                             <th>60%</th>
                         </tr>
                         <tr>

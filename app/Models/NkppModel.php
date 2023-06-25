@@ -20,6 +20,13 @@ class NkppModel extends Model
         ->getResultArray();
     }
 
+    function data_proses(){
+        return $this->db->table('nkpp')
+        ->where('status = ','Proses')
+        ->Get()
+        ->getResultArray();
+    }
+
     function getATData(){
         return $this->db->table('nkpp')
         ->join('nkp_at','nkp_at.id_nkp_at = nkpp.id_nkp')

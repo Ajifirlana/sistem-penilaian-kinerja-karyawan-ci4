@@ -12,6 +12,8 @@ use App\Models\NKPPTModel;
 use App\Models\NKTATModel;
 use App\Models\NKTKTModel;
 use App\Models\NKTPTModel;
+use App\Models\NkppModel;
+
 use App\Models\SasaranATModel;
 use App\Models\SasaranKTModel;
 use App\Models\SasaranPTModel;
@@ -742,7 +744,15 @@ class PTController extends BaseController
 
     public function DetailNKPP()
     {
-        return view('pt/detail_nkpp');
+
+        $NkppModel = new NkppModel();
+        $nkp = $NkppModel->data_proses();
+        $nilai_sasaran= $nkp[0]["nilai_sasaran"];
+        
+        $data = array(
+            'nilai_sasaran'=>$nilai_sasaran );
+       
+        return view('pt/detail_nkpp',$data);
     }
 
     //Anggota
