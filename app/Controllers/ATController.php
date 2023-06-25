@@ -637,41 +637,39 @@ exit();
         }
 
         $no = 1;
-        $no1 = $this->request->getPost('nilai' . '' . $no) * 0.4;
-        $no2 = $this->request->getPost('nilai' . '' . $no + 1) * 0.6;
+
+        $nilai = $this->request->getPost('nilai[]');
+        $no1 = $nilai[1] * 0.4;
+        $no2 = $nilai[2] * 0.6;
         $total1 = $no1 + $no2;
         $total1 = $total1 * 0.1;
 
-        $no3 = $this->request->getPost('nilai' . '' . $no + 2) * 0.2;
-        $no4 = $this->request->getPost('nilai' . '' . $no + 3) * 0.3;
-        $no5 = $this->request->getPost('nilai' . '' . $no + 4) * 0.5;
+        $no3 = $nilai[3] * 0.2;
+        $no4 = $nilai[4]  * 0.3;
+        $no5 = $nilai[5]  * 0.5;
         $total2 = $no3 + $no4 + $no5;
         $total2 = $total2 * 0.25;
 
-        $no6 = $this->request->getPost('nilai' . '' . $no + 5) * 0.5;
-        $no7 = $this->request->getPost('nilai' . '' . $no + 6) * 0.3;
-        $no8 = $this->request->getPost('nilai' . '' . $no + 7) * 0.2;
+        $no6 = $nilai[6]  * 0.5;
+        $no7 = $nilai[7]  * 0.3;
+        $no8 = $nilai[8]  * 0.2;
         $total3 = $no6 + $no7 + $no8;
         $total3 = $total3 * 0.25;
 
-        $no9 = $this->request->getPost('nilai' . '' . $no + 8) * 0.33;
-        $no10 = $this->request->getPost('nilai' . '' . $no + 9) * 0.34;
-        $no11 = $this->request->getPost('nilai' . '' . $no + 10) * 0.33;
+        $no9 = $nilai[9]  * 0.33;
+        $no10 = $nilai[10]  * 0.34;
+        $no11 = $nilai[11]  * 0.33;
         $total4 = $no9 + $no10 + $no11;
         $total4 = $total4 * 0.25;
 
-        $no12 = $this->request->getPost('nilai' . '' . $no + 11) * 0.4;
-        $no13 = $this->request->getPost('nilai' . '' . $no + 11) * 0.2;
-        $no14 = $this->request->getPost('nilai' . '' . $no + 11) * 0.4;
+        $no12 = $nilai[12]  * 0.4;
+        $no13 = $nilai[12]  * 0.2;
+        $no14 = $nilai[12]  * 0.4;
         $total5 = $no12 + $no13 + $no14;
         $total5 = $total5 * 0.15;
 
         $nkt = $total1 + $total2 + $total3 + $total4 + $total5;
-
-
-
-
-        $nktATModel = new NKTATModel();
+       $nktATModel = new NKTATModel();
 
         $data = [
             'nilai' => $nkt,
