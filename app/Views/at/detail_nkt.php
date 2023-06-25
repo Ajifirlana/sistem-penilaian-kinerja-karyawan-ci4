@@ -83,50 +83,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($soal as $no => $soal) : ?>
-
-                        <tr>
-                            <th><?php echo $no + 1 ?></th>
+                    <?php 
+                    $urut = 1;
+                    $no = 1;
+                    foreach ($soal as  $soal) : ?>
+ <tr>
+                            <th><?php echo $no++ ?></th>
                             <th><?php echo $soal['soal']; ?></th>
-                            <?php if ($soal['nilai'] == 100) : ?>
-                                <th><input type="radio" checked name="nilai<?php echo $no + 1 ?>" value="100"></th>
-                                <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="85"></th>
-                                <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="70"></th>
-                                <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="55"></th>
+                         <?php if($soal['melebihi'] >= 100){ ?>
+                            <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
+                        <?php }else{?>
+                            <th><input type="radio" name="nilai" value=""></th>
+                        <?php }?>
+                           
+                           <?php if($soal['memenuhi'] >= 85){ ?>
+                            <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
+                        <?php }else{?>
+                            <th><input type="radio" name="nilai" value=""></th>
+                        <?php }?>
+                            
+                           <?php if($soal['perlu_perhatian'] >= 70){ ?>
+                            <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
+                        <?php }else{?>
+                            <th><input type="radio" name="nilai" value=""></th>
+                        <?php }?>
+                            <?php if($soal['tidak_memenuhi'] >= 55){ ?>
+                            <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
+                        <?php }else{?>
+                            <th><input type="radio" name="nilai" value=""></th>
+                        <?php }?>
                         </tr>
 
-                        <tr>
-                        <?php elseif ($soal['nilai'] == 85) : ?>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="100"></th>
-                            <th><input type="radio" checked name="nilai<?php echo $no + 1 ?>" value="85"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="70"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="55"></th>
-                        </tr>
-
-                        <tr>
-                        <?php elseif ($soal['nilai'] == 70) : ?>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="100"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="85"></th>
-                            <th><input type="radio" checked name="nilai<?php echo $no + 1 ?>" value="70"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="55"></th>
-                        </tr>
-
-                        <tr>
-                        <?php elseif ($soal['nilai'] == 55) : ?>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="100"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="85"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="70"></th>
-                            <th><input type="radio" checked name="nilai<?php echo $no + 1 ?>" value="55"></th>
-                        </tr>
-
-                        <tr>
-                        <?php else : ?>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="100"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="85"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="70"></th>
-                            <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="55"></th>
-                        </tr>
-                    <?php endif; ?>
 
                 <?php endforeach; ?>
                 </tbody>
