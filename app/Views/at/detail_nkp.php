@@ -82,7 +82,8 @@
                 <tbody>
                     <?php 
                     $urut = 1;
-                    foreach ($soal as $no => $soal) :
+                    $no=1;
+                    foreach ($soal as $soal) :
                     ?>
                         <tr>
                             <th><?php echo $no++ ?></th>

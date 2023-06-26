@@ -825,6 +825,7 @@ class KTController extends BaseController
         $data = [
             'nkpp' => $nkpp
         ];
+        
         return view('kt/nkpp', $data);
     }
 
