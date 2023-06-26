@@ -84,16 +84,18 @@
                     $urut = 1;
                     $no=1;
                     foreach ($soal as $soal) :
+
                     ?>
                         <tr>
                             <th><?php echo $no++ ?></th>
                             <th><?php echo $soal['soal']; ?></th>
-                         <?php if($soal['melebihi'] >= 100){ ?>
-                            <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
+                         <?php if($soal['nilai'] >= $soal['melebihi']){ ?>
+                            <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th><th><input type="radio" name="nilai<?= $urut++?>" value=""></th><th><input type="radio" name="nilai<?= $urut++?>" value=""></th><th><input type="radio" name="nilai<?= $urut++?>" value=""></th>
                         <?php }else{?>
-                            <th><input type="radio" name="nilai" value=""></th>
+                        <th><input type="radio" name="nilai<?= $urut++?>" value="" ></th><th><input type="radio" name="nilai<?= $urut++?>" value="" ></th>
+                        <th><input type="radio" name="nilai<?= $urut++?>" value=""></th><th><input type="radio" name="nilai<?= $urut++?>" value=""></th>
                         <?php }?>
-                           
+                           <!-- 
                            <?php if($soal['memenuhi'] >= 85){ ?>
                             <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
                         <?php }else{?>
@@ -109,7 +111,7 @@
                             <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
                         <?php }else{?>
                             <th><input type="radio" name="nilai" value=""></th>
-                        <?php }?>
+                        <?php }?> -->
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
