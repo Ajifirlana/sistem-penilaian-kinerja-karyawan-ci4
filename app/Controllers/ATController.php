@@ -344,14 +344,16 @@ class ATController extends BaseController
         $no = 1;
         $id = $this->request->getPost('id_nkp[]');
         $nilai = $this->request->getPost('nilai[]');
-        $no1 = $this->request->getPost($nilai[1]) * 0.25;
-        $no2 = $this->request->getPost($nilai[2]) * 0.25;
-        $no3 = $this->request->getPost($nilai[3]) * 0.2;
-        $no4 = $this->request->getPost($nilai[4]) * 0.3;
+    
+       $no1 = $nilai[1] * 0.25;
+        $no2 = $nilai[2] * 0.25;
+        $no3 = $nilai[3] * 0.2;
+        $no4 = $nilai[4] * 0.3;
+
 
         $total1 = $no1 + $no2 + $no3 + $no4;
         $total1 = $total1 * 0.3;
-        
+
         $no5 = $this->request->getPost($nilai[5]) * 0.4;
         $no6 = $this->request->getPost($nilai[6]) * 0.6;
         $total2 = $no5 + $no6;
