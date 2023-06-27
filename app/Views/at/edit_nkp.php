@@ -32,7 +32,7 @@
                     <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                         <form class="form-inline mr-auto w-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="hidden" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search fa-sm"></i>
@@ -82,17 +82,20 @@
                                     <tr>
                             <th><?php echo $no++ ?></th>
                             <th><?php echo $soal['soal']; ?>
-                                <input type="hidden" name="id_nkp" value="<?= $soal['id_nkp'] ?>">
                             </th>
                          <?php if($soal['melebihi_rel'] >= $soal['melebihi']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
-                            <th><input type="radio" name="nilai1" value="<?php echo '100'; ?>"></th>
+                            <th>    
+                                <input type="hidden" name="id_nkp" value="<?= $soal['id_nkp'] ?>">
+                            <input type="radio" name="nilai1" value="<?php echo '100'; ?>"></th>
                         <?php }?>
                            <?php if($soal['memenuhi_rel'] >= $soal['memenuhi']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
-                            <th><input type="radio" name="nilai2" value="85"></th>
+                            <th> 
+                                <input type="hidden" name="id_nkp" value="<?= $soal['id_nkp'] ?>">
+                            <input type="radio" name="nilai2" value="85"></th>
                         <?php }?>
                             
                            <?php if($soal['perlu_perhatian_rel'] >= $soal['perlu_perhatian']){ ?>

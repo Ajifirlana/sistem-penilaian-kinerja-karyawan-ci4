@@ -344,8 +344,9 @@ class ATController extends BaseController
         {
         $no = 1;
         $id = $this->request->getPost('id_nkp');
+
         $nilai = $this->request->getPost('nilai[]');
-                       $return = array();
+$return = array();
 $no1 =0;
 $no2 =0;
 $no3 =0;
@@ -380,9 +381,9 @@ $count = count($nilai);
             // 'status' => "Pending",
         ];  
 
-    $nkpModel->protect(false)->update($id, $data);
     
-    }   
+    }
+    $nkpModel->protect(false)->update($id, $data);
 
       
      return redirect()->to('/at/nkp');
