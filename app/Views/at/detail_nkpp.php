@@ -74,28 +74,28 @@
                             <th>Sasaran Kinerja (N-SKn)</th>
                             <th><?php echo $nkpp['nilai_sasaran']; ?></th>
                             <th>60%</th>
-                            <th><?php echo $nkpp['nilai_kinerja_sasaran']; ?></th>
+                            <th><?php echo $nkpp['nilai_kinerja_sasaran']*60/100; ?></th>
                         </tr>
                         <tr>
                             <th>2.</th>
                             <th>Kompetensi Perilaku (N-KPn)</th>
                             <th><?php echo $nkpp['nilai_nkp']; ?></th>
                             <th>20%</th>
-                            <th><?php echo $nkpp['nilai_kinerja_nkp']; ?></th>
+                            <th><?php echo $nkpp['nilai_kinerja_nkp']*20/100; ?></th>
                         </tr>
                         <tr>
                             <th>3.</th>
                             <th>Kompetensi Teknis (N-KTn)</th>
                             <th><?php echo $nkpp['nilai_nkt']; ?></th>
                             <th>20%</th>
-                            <th><?php echo $nkpp['nilai_kinerja_nkt']; ?></th>
+                            <th><?php echo $nkpp['nilai_kinerja_nkt']*20/100; ?></th>
                         </tr>
                         <tr>
                             <th></th>
                             <th>Nilai Kinerja(NK-PP)</th>
                             <th></th>
                             <th></th>
-                            <th><?php echo $total = $nkpp['nilai_kinerja_nkt']+$nkpp['nilai_kinerja_nkp']+$nkpp['nilai_kinerja_sasaran']; ?></th>
+                            <th><?php echo $total = $nkpp['nilai_kinerja_nkt']*20/100+$nkpp['nilai_kinerja_nkp']*20/100+$nkpp['nilai_kinerja_sasaran']*60/100; ?></th>
                         </tr>
                     </table>
                 </div>
