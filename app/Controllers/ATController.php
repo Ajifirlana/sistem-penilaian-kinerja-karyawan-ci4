@@ -351,7 +351,8 @@ $no2 =0;
 $no3 =0;
 $no4 =0;
 $total1 =0;
-$nilai[1]=$this->request->getPost('nilai1');
+$nilai[1]=$this->request->getPost('value_baris[]');
+
 $nilai[2]=$this->request->getPost('nilai2');
 $nilai[3]=$this->request->getPost('nilai3');
 $nilai[4]=$this->request->getPost('nilai4');
@@ -359,33 +360,22 @@ $count = count($nilai);
 $nkpModel = new NkpModel();
 $soal = $nkpModel->join();
 $jumlah_data = count($soal);
-
 for ($i=0; $i < $jumlah_data; $i++) { 
-        if ($nilai[1]) {
-        $no1 = $nilai[1] * 0.25;
-        }if($nilai[2]) {
-       $no2 = $nilai[2] * 0.25;
-        }  
-        if($nilai[3]) {
-       $no3 = $nilai[3] * 0.2;
-        }if($nilai[4]) {
-        $no4 = $nilai[4] * 0.3;
-        }  
-        $total1 = $no1 + $no2 + $no3 + $no4;
-        $total1 = $total1 * 0.3;
 
 $nkpJoinModel = new NKPATJoinModel();
 
  foreach ($id as $row) {
-     $value['id'] = $row;
+     $value['id'] = 1;
 
      if ($nilai[1] || $nilai[2]|| $nilai[3]|| $nilai[4]) {
          $value['id'] = '1';
-     }else{
-        $getid = $nkpJoinModel->find($id);
-    
-       $value['id'] = $no++;
      }
+        if($nilai[1][5]||$nilai[1][9] ) {    
+       
+        $value['id'] =  '2';
+        
+        }
+     
      $data = [
             'melebihi_rel' => $nilai[1],
             'memenuhi_rel' => $nilai[2],
@@ -395,11 +385,13 @@ $nkpJoinModel = new NKPATJoinModel();
             // 'status' => "Pending",
         ];
 
+}
+}
 // print_r($value['id']);
-// exit; 
-}
-}
+// exit;
  $nkpJoinModel->protect(false)->update($value['id'], $data);
+
+
    return redirect()->to('/at/nkp');
 
 exit;
@@ -410,6 +402,18 @@ exit;
     foreach($nilai as $row){
 
     }
+       //  if ($nilai[1]) {
+       //  $no1 = $nilai[1] * 0.25;
+       //  }if($nilai[2]) {
+       // $no2 = $nilai[2] * 0.25;
+       //  }  
+       //  if($nilai[3]) {
+       // $no3 = $nilai[3] * 0.2;
+       //  }if($nilai[4]) {
+       //  $no4 = $nilai[4] * 0.3;
+       //  }  
+       //  $total1 = $no1 + $no2 + $no3 + $no4;
+       //  $total1 = $total1 * 0.3;
         $no5 = $this->request->getPost($nilai[5]) * 0.4;
         $no6 = $this->request->getPost($nilai[6]) * 0.6;
         $total2 = $no5 + $no6;
