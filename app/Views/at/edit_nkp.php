@@ -82,7 +82,7 @@
                                     <tr>
                             <th><?php echo $no++ ?></th>
                             <th><?php echo $soal['soal']; ?>
-                                <input type="hidden" name="id_nkp" value="<?=$soal['id_nkp']?>">
+                                <input type="hidden" name="id_nkp" value="<?= $soal['id_nkp'] ?>">
                             </th>
                          <?php if($soal['melebihi_rel'] >= $soal['melebihi']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" value="<?php echo $soal['melebihi_rel']?>"checked></th>

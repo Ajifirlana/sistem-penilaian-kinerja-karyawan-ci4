@@ -10,6 +10,7 @@ use App\Models\NkppModel;
 use App\Models\NilainkpAT;
 use App\Models\NKPATModel;
 use App\Models\NKTATModel;
+use App\Models\NKPATJoinModel;
 use App\Models\SoalNKPModel;
 use App\Models\NilaiNKTModel;
 use App\Models\SasaranATModel;
@@ -342,18 +343,54 @@ class ATController extends BaseController
     public function aksi_updatenkp()
         {
         $no = 1;
-        $id = $this->request->getPost('id_nkp[]');
+        $id = $this->request->getPost('id_nkp');
+        
         $nilai = $this->request->getPost('nilai[]');
-    
-       $no1 = $nilai[1] * 0.25;
-        $no2 = $nilai[2] * 0.25;
-        $no3 = $nilai[3] * 0.2;
+   if($nilai==0)
+    {
+                    echo "<script>alert('Tidak ada data yang dipilih')</script>";
+    }else{
+                    $return = array();
+$no1 =0;
+$no2 =0;
+$no3 =0;
+$no4 =0;
+$total1 =0;
+$nilai[1]=90;
+$nilai[2]=80;
+$nilai[3]=60;
+$nilai[4]=50;
+$count = count($nilai);
+    foreach($nilai as $row){
+        $nilai[$no++] = $row;
+        if ($nilai[1]) {
+        $no1 = $nilai[1] * 0.25;
+        }if($nilai[2]) {
+       $no2 = $nilai[2] * 0.25;
+        }  
+        if($nilai[3]) {
+       $no3 = $nilai[3] * 0.2;
+        }if($nilai[4]) {
         $no4 = $nilai[4] * 0.3;
-
-
+        }  
         $total1 = $no1 + $no2 + $no3 + $no4;
         $total1 = $total1 * 0.3;
+        $nkpModel = new NKPATJoinModel();
+        $data = [
+            'melebihi_rel' => $nilai[1],
+            'memenuhi_rel' => $nilai[2],
+            'perlu_perhatian_rel' => $nilai[3],
+            'tidak_memenuhi_rel' => $nilai[4]
+            // 'periode' => $this->request->getPost('periode'),
+            // 'status' => "Pending",
+        ];
+        $nkpModel->protect(false)->update($id, $data);
+     
+    }       return redirect()->to('/at/nkp');
 
+}
+     
+exit;
         $no5 = $this->request->getPost($nilai[5]) * 0.4;
         $no6 = $this->request->getPost($nilai[6]) * 0.6;
         $total2 = $no5 + $no6;
@@ -371,17 +408,7 @@ class ATController extends BaseController
         $total4 = $no9 + $no10 + $no11 + $no12;
         $total4 = $total4 * 0.2;
         $nkp = $total1 + $total2 + $total3 + $total4;
-        $nkpATModel = new NKPATModel();
-        $nkpSoalModel = new SoalNKPModel();
-        $data = [
-            'nilai' => $nkp,
-            'periode' => $this->request->getPost('periode'),
-            'status' => "Pending",
-        ];
-
-
-
-        $nkpATModel->protect(false)->update($id, $data);
+        
         return redirect()->to('/at/nkp');
                 exit;
         $id = $this->request->getPost('id');
