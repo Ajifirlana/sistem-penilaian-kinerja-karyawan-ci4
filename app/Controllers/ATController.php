@@ -343,26 +343,22 @@ class ATController extends BaseController
     public function aksi_updatenkp()
         {
         $no = 1;
-        $id = $this->request->getPost('id_nkp');
-        
+        $id = $this->request->getPost('id_nkp[]');
+        $id['id_nkp'] = $id;
+        //echo "<pre>";
         $nilai = $this->request->getPost('nilai[]');
-   if($nilai==0)
-    {
-                    echo "<script>alert('Tidak ada data yang dipilih')</script>";
-    }else{
-                    $return = array();
+                       $return = array();
 $no1 =0;
 $no2 =0;
 $no3 =0;
 $no4 =0;
 $total1 =0;
-$nilai[1]=90;
-$nilai[2]=80;
-$nilai[3]=60;
-$nilai[4]=50;
+$nilai[1]=$this->request->getPost('nilai1');
+$nilai[2]=$this->request->getPost('nilai2');
+$nilai[3]=$this->request->getPost('nilai3');
+$nilai[4]=$this->request->getPost('nilai4');
 $count = count($nilai);
     foreach($nilai as $row){
-        $nilai[$no++] = $row;
         if ($nilai[1]) {
         $no1 = $nilai[1] * 0.25;
         }if($nilai[2]) {
@@ -384,11 +380,10 @@ $count = count($nilai);
             // 'periode' => $this->request->getPost('periode'),
             // 'status' => "Pending",
         ];
-        $nkpModel->protect(false)->update($id, $data);
-     
-    }       return redirect()->to('/at/nkp');
-
-}
+    }     
+        $nkpModel->protect(false)->update($id['id_nkp'], $data);
+      
+     return redirect()->to('/at/nkp');
      
 exit;
         $no5 = $this->request->getPost($nilai[5]) * 0.4;
