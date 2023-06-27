@@ -87,14 +87,14 @@
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
                             <th>    
-                                <input type="text" name="id_nkp[<?= $soal['id_nkp'] ?>]" value="<?= $soal['id_nkp'] ?>">
+                                <input type="hidden" name="id_nkp[]" value="<?= $soal['id_nkp'] ?>">
                             <input type="radio" name="nilai1" value="<?php echo '100'; ?>"></th>
                         <?php }?>
                            <?php if($soal['memenuhi_rel'] >= $soal['memenuhi']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
                             <th> 
-                                <input type="text" name="id_nkp[]" value="<?= $soal['id_nkp'] ?>">
+                                <input type="hidden" name="id_nkp[]" value="<?= $soal['id_nkp'] ?>">
                             <input type="radio" name="nilai2" value="85"></th>
                         <?php }?>
                             
