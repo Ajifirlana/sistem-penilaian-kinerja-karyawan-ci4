@@ -94,18 +94,18 @@
                            <?php if($soal['memenuhi_rel'] >= $soal['memenuhi']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" value="<?php echo $soal['memenuhi_rel']?>" checked></th>
                         <?php }else{?>
-                            <th><input type="radio" name="nilai[<?= $urut++?>]" value="<?php echo $soal['memenuhi_rel']?>"></th>
+                            <th><input type="radio" name="nilai[]" value="<?php echo $soal['memenuhi_rel']?>"></th>
                         <?php }?>
                             
                            <?php if($soal['perlu_perhatian_rel'] >= $soal['perlu_perhatian']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" value="<?php echo $soal['perlu_perhatian_rel']?>" checked></th>
                         <?php }else{?>
-                            <th><input type="radio" name="nilai[<?= $urut++?>]" value="<?php echo $soal['perlu_perhatian_rel']?>"></th>
+                            <th><input type="radio" name="nilai[]" value="<?php echo $soal['perlu_perhatian_rel']?>"></th>
                         <?php }?>
                             <?php if($soal['tidak_memenuhi_rel'] >= $soal['tidak_memenuhi']){ ?>
-                            <th><input type="radio" name="nilai[<?= $urut++?>]" value="<?php echo $soal['tidak_memenuhi_rel']?>" checked></th>
+                            <th><input type="radio" name="nilai[]" value="<?php echo $soal['tidak_memenuhi_rel']?>" checked></th>
                         <?php }else{?>
-                            <th><input type="radio" name="nilai[<?= $urut++?>]" value="<?php echo $soal['tidak_memenuhi_rel']?>"></th>
+                            <th><input type="radio" name="nilai[]" value="<?php echo $soal['tidak_memenuhi_rel']?>"></th>
                         <?php }?> 
                         </tr>
                             <?php endforeach; ?>        
