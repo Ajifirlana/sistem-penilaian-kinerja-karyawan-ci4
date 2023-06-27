@@ -292,7 +292,7 @@ class ATController extends BaseController
         $nkpATModel = new NKPATModel();
         $nkp = $nkpATModel->find($id);
         $nkpModel = new NkpModel();
-        $soal = $nkpModel->join();
+        $soal = $nkpModel->getAT();
         $data = [
             'nkp' => $nkp,
             'soal' => $soal

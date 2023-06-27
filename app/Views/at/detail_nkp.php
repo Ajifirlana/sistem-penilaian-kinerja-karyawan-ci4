@@ -89,24 +89,24 @@
                         <tr>
                             <th><?php echo $no++ ?></th>
                             <th><?php echo $soal['soal']; ?></th>
-                         <?php if($soal['melebihi_rel'] >= $soal['melebihi']){ ?>
+                         <?php if($soal['melebihi'] >= 100){ ?>
                             <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th><?php }else{?>
                             <th><input type="radio" name="nilai" value=""></th>
                         <?php }?>
                             
 
-                           <?php if($soal['memenuhi_rel'] >= $soal['memenuhi']){ ?>
+                           <?php if($soal['memenuhi']>= 85){ ?>
                             <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
                         <?php }else{?>
                             <th><input type="radio" name="nilai" value=""></th>
                         <?php }?>
                             
-                           <?php if($soal['perlu_perhatian_rel'] >= $soal['perlu_perhatian']){ ?>
+                           <?php if($soal['perlu_perhatian'] >= 70){ ?>
                             <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
                         <?php }else{?>
                             <th><input type="radio" name="nilai" value=""></th>
                         <?php }?>
-                            <?php if($soal['tidak_memenuhi_rel'] >= $soal['tidak_memenuhi']){ ?>
+                            <?php if($soal['tidak_memenuhi'] >= 55){ ?>
                             <th><input type="radio" name="nilai<?= $urut++?>" value="" checked></th>
                         <?php }else{?>
                             <th><input type="radio" name="nilai" value=""></th>
