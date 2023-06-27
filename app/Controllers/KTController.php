@@ -882,7 +882,7 @@ class KTController extends BaseController
         $nkpATModel = new NKPATModel();
         $nkp = $nkpATModel->find($id);
         $nkpModel = new NkpModel();
-        $soal = $nkpModel->getAT();
+        $soal = $nkpModel->getKT();
 
         $data = [
             'nkp' => $nkp,
