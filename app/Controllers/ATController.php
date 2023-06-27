@@ -342,7 +342,7 @@ class ATController extends BaseController
     }
     public function aksi_updatenkp()
         {
-        $no = 1;
+        $no = 0;
         $id = $this->request->getPost('id_nkp[]');
         $nilai = $this->request->getPost('nilai[]');
 $return = array();
@@ -370,7 +370,7 @@ $count = count($nilai);
         $total1 = $no1 + $no2 + $no3 + $no4;
         $total1 = $total1 * 0.3;
         $nkpModel = new NKPATJoinModel();
-
+// exit;
         $data = [
             'melebihi_rel' => $nilai[1],
             'memenuhi_rel' => $nilai[2],
@@ -379,10 +379,10 @@ $count = count($nilai);
             // 'periode' => $this->request->getPost('periode'),
             // 'status' => "Pending",
         ];
-$nkpModel->protect(false)->update($id, $data);
-  
-    }
 
+    }
+$nkpModel->protect(false)->update($id[1], $data);
+  
      return redirect()->to('/at/nkp');
      
 exit;
