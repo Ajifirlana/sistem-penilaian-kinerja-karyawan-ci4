@@ -87,25 +87,29 @@
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
                             <th>    
-                                <input type="hidden" name="id_nkp[]" value="<?= $soal['id_nkp'] ?>">
+                                <input type="hidden" name="id_nkp[<?= $soal['id'] ?>]" value="<?= $soal['id'] ?>">
                             <input type="radio" name="nilai1" value="<?php echo '100'; ?>"></th>
                         <?php }?>
                            <?php if($soal['memenuhi_rel'] >= $soal['memenuhi']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
                             <th> 
-                                <input type="hidden" name="id_nkp[]" value="<?= $soal['id_nkp'] ?>">
+                                <input type="hidden" name="id_nkp[<?= $soal['id'] ?>]" value="<?= $soal['id'] ?>">
                             <input type="radio" name="nilai2" value="85"></th>
                         <?php }?>
                             
                            <?php if($soal['perlu_perhatian_rel'] >= $soal['perlu_perhatian']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
+
+                                <input type="hidden" name="id_nkp[<?= $soal['id'] ?>]" value="<?= $soal['id'] ?>">
                             <th><input type="radio" name="nilai3" value="70"></th>
                         <?php }?>
                             <?php if($soal['tidak_memenuhi_rel'] >= $soal['tidak_memenuhi']){ ?>
                             <th><input type="radio" name="nilai[<?= $urut++?>]" checked></th>
                         <?php }else{?>
+                            
+                                <input type="hidden" name="id_nkp[<?= $soal['id'] ?>]" value="<?= $soal['id'] ?>">
                             <th><input type="radio" name="nilai4" value="55"></th>
                         <?php }?> 
                         </tr>

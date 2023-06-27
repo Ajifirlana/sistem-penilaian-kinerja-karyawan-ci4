@@ -342,7 +342,7 @@ class ATController extends BaseController
     }
     public function aksi_updatenkp()
         {
-        $no = 0;
+        $no = 1;
         $id = $this->request->getPost('id_nkp[]');
         $nilai = $this->request->getPost('nilai[]');
 $return = array();
@@ -356,7 +356,11 @@ $nilai[2]=$this->request->getPost('nilai2');
 $nilai[3]=$this->request->getPost('nilai3');
 $nilai[4]=$this->request->getPost('nilai4');
 $count = count($nilai);
-    foreach($nilai as $row){
+$nkpModel = new NkpModel();
+$soal = $nkpModel->join();
+$jumlah_data = count($soal);
+
+for ($i=0; $i < $jumlah_data; $i++) { 
         if ($nilai[1]) {
         $no1 = $nilai[1] * 0.25;
         }if($nilai[2]) {
@@ -369,9 +373,20 @@ $count = count($nilai);
         }  
         $total1 = $no1 + $no2 + $no3 + $no4;
         $total1 = $total1 * 0.3;
-        $nkpModel = new NKPATJoinModel();
-// exit;
-        $data = [
+
+$nkpJoinModel = new NKPATJoinModel();
+
+ foreach ($id as $row) {
+     $value['id'] = $row;
+
+     if ($nilai[1] || $nilai[2]|| $nilai[3]|| $nilai[4]) {
+         $value['id'] = '1';
+     }else{
+        $getid = $nkpJoinModel->find($id);
+    
+       $value['id'] = $no++;
+     }
+     $data = [
             'melebihi_rel' => $nilai[1],
             'memenuhi_rel' => $nilai[2],
             'perlu_perhatian_rel' => $nilai[3],
@@ -380,12 +395,21 @@ $count = count($nilai);
             // 'status' => "Pending",
         ];
 
-    }
-$nkpModel->protect(false)->update($id[1], $data);
-  
-     return redirect()->to('/at/nkp');
-     
+// print_r($value['id']);
+// exit; 
+}
+}
+ $nkpJoinModel->protect(false)->update($value['id'], $data);
+   return redirect()->to('/at/nkp');
+
 exit;
+print_r($data);
+exit;
+
+
+    foreach($nilai as $row){
+
+    }
         $no5 = $this->request->getPost($nilai[5]) * 0.4;
         $no6 = $this->request->getPost($nilai[6]) * 0.6;
         $total2 = $no5 + $no6;
