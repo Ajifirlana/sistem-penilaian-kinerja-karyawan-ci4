@@ -636,8 +636,8 @@ exit();
         $nkt = $nktATModel->find($id);
 
         $nktModel = new NktModel();
-        $soal = $nktModel
-            ->getAT();
+
+        $soal = $nktModel->join();
 
         $NilaiNKTModel = new NilaiNKTModel();
 

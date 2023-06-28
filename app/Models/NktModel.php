@@ -17,7 +17,12 @@ class NktModel extends Model
         ->Get()
         ->getResultArray();
     }
-
+    function join(){
+        return $this->db->table('nkp_relation')
+         ->join('nkt','nkt.id_nkt=nkp_relation.id')
+         ->where('nkt.bagian = ','at')
+         ->get()->getResultArray();  
+    }
     function getKT(){
         return $this->db->table('nkt')
         ->where('bagian = ','kt')
