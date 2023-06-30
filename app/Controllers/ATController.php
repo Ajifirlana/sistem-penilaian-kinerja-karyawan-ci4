@@ -196,7 +196,40 @@ class ATController extends BaseController
         }
 
         $no = 1;
-        $no1 = $this->request->getPost('nilai' . '' . $no) * 0.25;
+        $id_nkp=$this->request->getPost('id_nkp');
+        $nilai=$this->request->getPost('nilai');
+       $nilai1 = 0;
+        $nilai2 = 0; 
+        $nilai3 = 0;
+          $nilai3 = 0;
+           $nilai4 = 0;
+           $next_id = 1;
+        if (empty($id_nkp[0])) {
+            for ($i=0; $i < 12; $i++) { 
+            $data['next_id']= $id_nkp[$i];
+            
+            }
+        }
+        if ($nilai[0] == 100) {
+           $nilai1=$nilai[0];
+        }elseif ($nilai[0] == 85) {
+            $nilai2=$nilai[0];
+        }
+        elseif ($nilai[0] == 70) {
+            $nilai3=$nilai[0];
+        }
+        $data = array('id'=>$next_id,
+            'melebihi_rel'=>$nilai1,
+            'memenuhi_rel'=>$nilai2,
+        'perlu_perhatian_rel'=>$nilai3,
+        'tidak_memenuhi_rel'=>$nilai4);
+        
+                          $nkpJoinModel = new NKPATJoinModel();
+                        
+                    $nkpJoinModel->protect(false)->save($data);
+                         return redirect()->to('/at/create_nkp');
+                                 exit;
+
         $no2 = $this->request->getPost('nilai' . '' . $no + 1) * 0.25;
         $no3 = $this->request->getPost('nilai' . '' . $no + 2) * 0.2;
         $no4 = $this->request->getPost('nilai' . '' . $no + 3) * 0.3;
@@ -292,7 +325,7 @@ class ATController extends BaseController
         $nkpATModel = new NKPATModel();
         $nkp = $nkpATModel->find($id);
         $nkpModel = new NkpModel();
-        $soal = $nkpModel->getAT();
+        $soal = $nkpModel->join();
         $data = [
             'nkp' => $nkp,
             'soal' => $soal

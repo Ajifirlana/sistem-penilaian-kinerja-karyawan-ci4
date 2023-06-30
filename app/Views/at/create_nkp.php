@@ -73,14 +73,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($nkp as $no => $nkp) : ?>
+                                <?php $no=1;foreach ($nkp as $nkp) : ?>
                                     <tr>
                                         <th><?php echo $no + 1 ?></th>
-                                        <th><?php echo $nkp['soal']; ?></th>
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="100"></th>
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="85"></th>
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="70"></th>
-                                        <th><input type="radio" name="nilai<?php echo $no + 1 ?>" value="55"></th>
+                                        <th>
+                                            <?php echo $nkp['soal']; ?>
+                                            <input type="hidden" name="id_nkp[]" value="<?php echo $nkp['id_nkp']; ?>">
+                                        </th>
+                                        <th><input type="checkbox" name="nilai[]" value="100"></th>
+                                        <th><input type="checkbox" name="nilai[]" value="85"></th>
+                                        <th><input type="checkbox" name="nilai[]" value="70"></th>
+                                        <th><input type="checkbox" name="nilai[]" value="55"></th>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
