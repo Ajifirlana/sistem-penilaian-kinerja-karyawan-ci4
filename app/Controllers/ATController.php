@@ -342,123 +342,55 @@ class ATController extends BaseController
     }
     public function aksi_updatenkp()
         {
-        $no = 1;
-        $id = $this->request->getPost('id_nkp[]');
-        $nilai = $this->request->getPost('nilai[]');
-$return = array();
-$no1 =0;
-$no2 =0;
-$no3 =0;
-$no4 =0;
-$total1 =0;
-$nilai[1]=$this->request->getPost('value_baris[]');
+ error_reporting(E_ALL & ~E_NOTICE);
 
-$nilai[2]=$this->request->getPost('nilai2');
-$nilai[3]=$this->request->getPost('nilai3');
-$nilai[4]=$this->request->getPost('nilai4');
-$count = count($nilai);
-$nkpModel = new NkpModel();
-$soal = $nkpModel->join();
-$jumlah_data = count($soal);
-for ($i=0; $i < $jumlah_data; $i++) { 
+                $ide = $this->request->getPost('id_nkp');
+                $kolom = $this->request->getPost('kolom');
+                $memenuhi = $this->request->getPost('memenuhi');
+                $nilai=$this->request->getPost('value_baris[]');
+                $idm['idmmnuhi'] = $memenuhi;
+                $nilai[2]=$nilai;
 
-$nkpJoinModel = new NKPATJoinModel();
+                    for ($i=0; $i < count( $idm['idmmnuhi'] ); $i++) { 
+                            // $idm['idmmnuhi'][$i];
+                            $id_nkp = $ide[$i];
+                             
+                            $nilai1= $nilai[$i];
+                            $nilai2= $nilai[1];
+                            $nilai3= $nilai[2];
+                            $nilai4= $nilai[3];
 
- foreach ($id as $row) {
-     $value['id'] = 1;
+                            if($kolom[0] == 1) {
+                                $id_nkp = 1;
+                                if (empty($nilai[1][1])) {
+                                    $id_nkp = 2;
+                                }
+                              }elseif($kolom[1] == 2) {
+                               $id_nkp = 2;
+                               if (empty($nilai[1][5])) {
+                                   $id_nkp = 3;
+                               }
+                              }elseif ($kolom[2] == 3) {
+                               $id_nkp = 3;
+                              }elseif ($kolom[3] == 4) {
+                                $id_nkp = 4;
+                              }
+                        
+                              $data = array(
+                                'melebihi_rel' => $nilai1,
+                                'memenuhi_rel' => $nilai2,
+                                'perlu_perhatian_rel' => $nilai3,
+                                'tidak_memenuhi_rel' => $nilai4
+                                // 'periode' => $this->request->getPost('periode'),
+                                // 'status' => "Pending",
+                                );
 
-     if ($nilai[1] || $nilai[2]|| $nilai[3]|| $nilai[4]) {
-         $value['id'] = '1';
-     }
-        if($nilai[1][5]||$nilai[1][9] ) {    
-       
-        $value['id'] =  '2';
-        
-        }
-     
-     $data = [
-            'melebihi_rel' => $nilai[1],
-            'memenuhi_rel' => $nilai[2],
-            'perlu_perhatian_rel' => $nilai[3],
-            'tidak_memenuhi_rel' => $nilai[4]
-            // 'periode' => $this->request->getPost('periode'),
-            // 'status' => "Pending",
-        ];
+                          $nkpJoinModel = new NKPATJoinModel();
+                                     $nkpJoinModel->protect(false)->update($id_nkp, $data);
+                           
+                         return redirect()->to('/at/nkp');
 
-}
-}
-// print_r($value['id']);
-// exit;
- $nkpJoinModel->protect(false)->update($value['id'], $data);
-
-
-   return redirect()->to('/at/nkp');
-
-exit;
-print_r($data);
-exit;
-
-
-    foreach($nilai as $row){
-
-    }
-       //  if ($nilai[1]) {
-       //  $no1 = $nilai[1] * 0.25;
-       //  }if($nilai[2]) {
-       // $no2 = $nilai[2] * 0.25;
-       //  }  
-       //  if($nilai[3]) {
-       // $no3 = $nilai[3] * 0.2;
-       //  }if($nilai[4]) {
-       //  $no4 = $nilai[4] * 0.3;
-       //  }  
-       //  $total1 = $no1 + $no2 + $no3 + $no4;
-       //  $total1 = $total1 * 0.3;
-        $no5 = $this->request->getPost($nilai[5]) * 0.4;
-        $no6 = $this->request->getPost($nilai[6]) * 0.6;
-        $total2 = $no5 + $no6;
-        $total2 = $total2 * 0.2;
-        
-        $no7 = $this->request->getPost($nilai[7]) * 0.5;
-        $no8 = $this->request->getPost($nilai[8]) * 0.5;
-        $total3 = $no7 + $no8;
-        $total3 = $total3 * 0.3;
-        
-        $no9 = $this->request->getPost($nilai[9]) * 0.2;
-        $no10 = $this->request->getPost($nilai[10]) * 0.25;
-        $no11 = $this->request->getPost($nilai[11]) * 0.25;
-        $no12 = $this->request->getPost($nilai[12]) * 0.3;
-        $total4 = $no9 + $no10 + $no11 + $no12;
-        $total4 = $total4 * 0.2;
-        $nkp = $total1 + $total2 + $total3 + $total4;
-        
-        return redirect()->to('/at/nkp');
-                exit;
-        $id = $this->request->getPost('id');
-        $nkpModel = new NkpModel();
-exit();         
-            $melebihi = $this->request->getPost('melebihi');
-            $memenuhi = $this->request->getPost('memenuhi');
-            $perlu_perhatian=$this->request->getPost('perlu_perhatian'); 
-            $tidak_memenuhi = $this->request->getPost('tidak_memenuhi');
-        if ($this->request->getPost('melebihi') == NULL) {
-            $melebihi = 99;
-        }if ($this->request->getPost('memenuhi') == NULL) {
-            $memenuhi = 84;
-        }if($this->request->getPost('perlu_perhatian')==NULL){
-            $perlu_perhatian=69; 
-        }if($this->request->getPost('tidak_memenuhi')==NULL){
-            $tidak_memenuhi = 54;
-        }
-        $data  = array(
-            'melebihi' =>$melebihi ,
-        'memenuhi' => $memenuhi,
-        'perlu_perhatian' =>$perlu_perhatian,
-        'tidak_memenuhi' => $tidak_memenuhi
-                );
-
-       $nkpModel->protect(false)->update($id, $data);
-        return redirect()->to('/at/nkp');
+                    }
                }
      public function updateNKP($id)
 
